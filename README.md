@@ -368,7 +368,6 @@ OPTIONS:
 
 --smtp-delay=true
 
-	Allows you to add a 3 second delay when sending the email body and
-	before the SMTP QUIT command is sent. Necessary for some mail servers
+	Allows you to add a 3 second delay before the SMTP QUIT command is sent. Necessary for some mail servers
 	e.g. hMailServer
 	
