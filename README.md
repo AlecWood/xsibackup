@@ -365,3 +365,10 @@ OPTIONS:
 	This command needs an argument like this --link-srv=192.168.0.100 
 	It generates a DSA key locally and adds it to the authorized_keys 
 	file at the remote host allowing to communicate without a password.
+
+--smtp-delay=true
+
+	Allows you to add a 3 second delay when sending the email body and
+	before the SMTP QUIT command is sent. Necessary for some mail servers
+	e.g. hMailServer
+	
