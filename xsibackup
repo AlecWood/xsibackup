@@ -7,7 +7,7 @@
 #                                                                               #
 #    You are allowed to use this software for personal or                       #
 #    commercial use. You are allowed to redistribute it                         #
-#    without any modification. You can modify it's source                       #
+#    without any modification. You can modify its source                        #
 #    code freely just as long as you do not redistribute                        #
 #    the modified source code.                                                  #
 #                                                                               #
@@ -76,7 +76,7 @@ Backup Utility for the © VMware ESXi 5.X Hypervisor Series
 RULES:
 Arguments are a list of variable/value pairs separated by an equal sign. 
 You can use any character to define values with the exception of double quotes (") and the equal sign (=).
-You must double quote variables if you use spaces or any scapable character.
+You must double quote variables if you use spaces or any escapable character.
 
 USAGE:
 Example 1 (backup all running VMs):
@@ -84,7 +84,7 @@ xsibackup --backup-point=/vmfs/volumes/backup --backup-type=running --mail-from=
 --mail-to=email.recipient@anotherdomain.com --smtp-srv=smtp.yourdomain.com --smtp-port=25 --smtp-usr=username 
 --smtp-pwd=password
 
-Example 2 (backup 3 VMs even if they are swiched off):
+Example 2 (backup 3 VMs even if they are switched off):
 xsibackup --backup-point=/vmfs/volumes/backup --backup-type=custom --backup-vms="WINDOWSVM1,LINUXVM2,New VM" 
 --mail-from=email.sender@yourdomain.com --mail-to=email.recipient@anotherdomain.com --smtp-srv=smtp.yourdomain.com 
 --smtp-port=25 --smtp-usr=username --smtp-pwd=password
@@ -93,10 +93,10 @@ OPTIONS:
 
 --install-cron		This will install the cron system and file xsibackup-cron to the current dir.
 			You can add as many XSIBackup commands as you want into this file, one per line.
-			The only thing you have to do is add the parameter --time, i.e. --time="Mon 23:30".
+			The only thing you have to do is add the parameter --time, e.g. --time="Mon 23:30".
 			You can find detailed instructions in the sample xsibackup-cron file.
 
---backup-point		1) Full path to the backup mount point within the local server, it will tipically be under
+--backup-point		1) Full path to the backup mount point within the local server, it will typically be under
 			/vmfs/volumes, i.e. /vmfs/volumes/backup, /vmfs/volumes/datastore2.
 			2) Full path in a remote ESXi host by using the following syntax:
 			--backup-point="IP.OF.REMOTE.SERVER:PORT:/full/path/todatastore:METHOD(F,D)"
@@ -107,10 +107,10 @@ OPTIONS:
 
 --backup-how		hot | cold
 			Hot (default): selected virtual machines are backed up without being switched off,
-			this is usefull for e-mail, http servers and VMs that cannot be switched off. If 
+			this is useful for e-mail, http servers and VMs that cannot be switched off. If 
 			you do not specify a value for --backup-how a hot backup will be carried out.
 			Cold: selected VMs will be switched off before backup and turned on right afterwards.
-			Good if you need a reboot cicle from time to time to refresh resources and don\'t
+			Good if you need a reboot cycle from time to time to refresh resources and don\'t
 			mind having a little downtime. 
 
 --backup-type		custom | all | running
@@ -123,7 +123,7 @@ OPTIONS:
 			adding an exclamation sign followed by a list of disks delimited by a semicolon [;]
 			Example: --backup-vms=VM1!scsi0:1;scsi0:2,VM2!disk1;disk2
 			You can use any string, full or partial, that may help identify the disk by its name
-			or by its device descriptor. Take on account that if you use an ambiguous string per
+			or by its device descriptor. Take into account that if you use an ambiguous string per
 			instance "scsi" more than one disk may be excluded. This parameter is only needed if 
 			custom is selected as the --backup-type.
 
@@ -154,8 +154,8 @@ OPTIONS:
 
 --smtp-sec		SMTP authentication scheme, set it =TLS (upper case) if needed, default is no encription
 
---smtp-delay=true	Allows you to add a 3 second delay before the SMTP QUIT command is sent.
-			Enable this if in test mode there is no email received.
+--smtp-delay=true	Allows you to add a 3 second delay before the SMTP QUIT command is sent. Needed for some
+			email servers. Enable this option if there is no email received.
 
 --link-srv		This command needs an argument like this --link-srv=192.168.0.100. It generates a DSA
 			key locally and adds it to the authorized_keys file at the remote host allowing to
@@ -170,7 +170,7 @@ OPTIONS:
 ###############################################
 #   BASE64 ASH NATIVE ENCODING FUNCTIONS      #
 ###############################################
-# These are base64 encodig functions programmed to 
+# These are base64 encoding functions programmed to 
 # work natively in busybox present on ESXi >= 5.1
 # Needless to say they are not very efficient for
 # encoding big files, but very convenient to
