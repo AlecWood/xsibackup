@@ -1733,8 +1733,8 @@ then
 		err_exit() { echo -e 1>&2; exit 1; }
 
 		mail_input() {
-  		echo -ne "HELO ${HOSTNAME}\r\n"
-  		echo -ne "EHLO ${HOSTNAME}\r\n"
+  		echo -ne "helo ${HOSTNAME}\r\n"
+  		echo -ne "ehlo ${HOSTNAME}\r\n"
   		if [ "$smtpauth" != "none" ]
   		then
   		echo -ne "AUTH LOGIN\r\n"
