@@ -154,6 +154,9 @@ OPTIONS:
 
 --smtp-sec		SMTP authentication scheme, set it =TLS (upper case) if needed, default is no encription
 
+--smtp-delay=true	Allows you to add a 3 second delay before the SMTP QUIT command is sent.
+			Enable this if in test mode there is no email received.
+
 --link-srv		This command needs an argument like this --link-srv=192.168.0.100. It generates a DSA
 			key locally and adds it to the authorized_keys file at the remote host allowing to
 			communicate without a password.
@@ -586,12 +589,12 @@ fi
                 
 if [[ "${SEND_EMAIL}" == 0 ]]
 then
-        echo "The e-mail report will not be sent becouse of the followig reasons:$newline$SEND_EMAIL_MSG$newline"
+        echo "The e-mail report will not be sent because of the followig reasons:$newline$SEND_EMAIL_MSG$newline"
 fi
 
 if [[ "${DO_BACKUP}" == 0 ]]
 then
-        echo "The backup will halt here becose some mandatory values are missing"
+        echo "The backup will halt here because some mandatory values are missing"
         exit 0
 fi
 
@@ -1730,8 +1733,8 @@ then
 		err_exit() { echo -e 1>&2; exit 1; }
 
 		mail_input() {
-  		echo -ne "helo ${HOSTNAME}\r\n"
-  		echo -ne "ehlo ${HOSTNAME}\r\n"
+  		echo -ne "HELO ${HOSTNAME}\r\n"
+  		echo -ne "EHLO ${HOSTNAME}\r\n"
   		if [ "$smtpauth" != "none" ]
   		then
   		echo -ne "AUTH LOGIN\r\n"
@@ -1748,7 +1751,13 @@ then
 		echo -ne "\r\n"
   		echo -ne $emailHTMLStr"\r\n"
   		echo -ne ".\r\n"
-  		echo -ne "quit\r\n"
+
+		if [[ "$smtpdelay" == "true" ]]
+		then
+			sleep 3
+		fi
+
+  		echo -ne "QUIT\r\n"
 		}
 
 		if [[ $smtpsec == "TLS" ]]
