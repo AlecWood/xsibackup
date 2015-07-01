@@ -368,6 +368,7 @@ OPTIONS:
 
 --smtp-delay=true
 
-	Allows you to add a 3 second delay before the SMTP QUIT command is sent. Necessary for some mail servers
-	e.g. hMailServer
+	Allows you to add a 3 second delay before the SMTP QUIT command is sent. Necessary
+	for some mail servers, e.g. hMailServer. Try this if no email is received, or if
+	the error log for your mail server says the message contains only EOF
 	
