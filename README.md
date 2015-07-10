@@ -3,6 +3,6 @@ Standalone backup of VMWare ESXi vSphere 5.X virtual machines to another datasto
 
 Author forbids distribution of modified code, so I've removed it from Git since I'll be liable if anyone downloads my fork
 
-It's a good script, very useful, and I'd like to contribute but I can do without the hassle tbh
+It's a good script, very useful, and I'd like to contribute but I can do without the hassle tbh, the license makes it awkward
 
 Please refer back to the 33hops repo
